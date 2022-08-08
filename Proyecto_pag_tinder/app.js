@@ -39,6 +39,10 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+
+/*Servir Archivos estáticos en Express*/
+app.use('/public', express.static('${__dirname}/imagenes/user.png'))
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

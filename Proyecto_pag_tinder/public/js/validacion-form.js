@@ -451,3 +451,114 @@ botonAtras3.addEventListener("click", function(e){
     progressText[contador-2].classList.remove("active");
     contador--;
 });
+
+/* --------------------
+        CONTACTO
+   --------------------
+*/
+
+const contacto = document.querySelector(".envio-contact");
+
+contacto.addEventListener("click", function(e){
+    var nombre = document.getElementById("nombre-contact").value;
+    var email = document.getElementById("email-contact").value;
+    var numTel = document.getElementById("telefono-contact").value;
+    var mensaje = document.getElementById("mensaje-contact").value;
+
+    /*Si todo está vacío*/
+    if ( nombre == "" && email == "" && numTel == "" && mensaje == ""){
+        document.getElementById("nombre-contact-error").innerHTML = "* Este campo no puede quedar vacío."
+        document.getElementById("nombre-contact").style.borderColor="#461453"
+        document.getElementById("email-contact-error").innerHTML = "* Este campo no puede quedar vacío."
+        document.getElementById("email-contact").style.borderColor="#461453"
+        document.getElementById("mensaje-contact-error").innerHTML = "* Este campo no puede quedar vacío."
+        document.getElementById("mensaje-contact").style.borderColor="#461453"
+        e.preventDefault(); /*Evita enviar el formulario*/
+
+    }else if( nombre == "" || email == "" || 
+                email.length < 6 || mensaje.length < 5 || numTel.length != 9 
+                || !verificarEmail(email) || !verificarNumTel(numTel)){
+        
+        /*Si sólo el nombre está vacío*/
+        if ( nombre == "" ){
+            document.getElementById("nombre-contact-error").innerHTML = "* Este campo no puede quedar vacío.";
+            document.getElementById("nombre-contact").style.borderColor= "#461453"  ;        
+          }else if (!verificarTexto(nombre) ){
+            document.getElementById("nombre-contact-error").innerHTML = "* Dato no válido.";
+            document.getElementById("nombre-contact").style.borderColor= "#461453";      
+          }else {
+            document.getElementById("nombre-contact-error").innerHTML = "";
+            document.getElementById("nombre-contact").style.borderColor= "lightgrey";      
+          }
+
+        /*Si el email está vacío*/
+        if ( email == "" ){
+            document.getElementById("email-contact-error").innerHTML = "* Este campo no puede quedar vacío."
+            document.getElementById("email-login").style.borderColor="#461453"
+                  
+        }else if ( email.length < 6 ){
+            document.getElementById("email-contact-error").innerHTML = "* Debe tener 6 o más caractéres."
+            document.getElementById("email-contact").style.borderColor="#461453"      
+        }else if ( !verificarEmail(email) ){
+            document.getElementById("email-contact-error").innerHTML = "* Ingreso de datos inválidos."
+            document.getElementById("email-contact").style.borderColor="#461453"      
+        }else {
+            document.getElementById("email-contact-error").innerHTML = ""
+            document.getElementById("email-contact").style.borderColor="lightgrey"      
+        }
+
+         /*Si el num de teléfono es erróneo*/
+        if ( numTel == ""){
+            document.getElementById("telefono-contact-error").innerHTML = "* Este campo no puede quedar vacío."
+            document.getElementById("telefono-contact").style.borderColor="#461453"      
+        }else if ( numTel.length != 9 ){
+            document.getElementById("telefono-contact-error").innerHTML = "* Debe tener 9 dígitos."
+            document.getElementById("telefono-contact").style.borderColor="#461453"      
+        }else if ( !verificarNumCel(numTel) ){
+            document.getElementById("telefono-contact-error").innerHTML = "* Ingreso de datos inválidos."
+            document.getElementById("telefono-contact").style.borderColor="#461453"      
+        }else {
+            document.getElementById("telefono-contact-error").innerHTML = ""
+            document.getElementById("telefono-contact").style.borderColor="lightgrey"      
+        }
+
+        /*Mensaje vacío*/
+        if ( mensaje == "" ){
+            document.getElementById("mensaje-contact-error").innerHTML = "* Este campo no puede quedar vacío."
+            document.getElementById("mensaje-contact").style.borderColor="#461453"      
+        }else if ( mensaje.length < 5 ){
+            document.getElementById("mensaje-contact-error").innerHTML = "* Debe tener 5 a más caractéres."
+            document.getElementById("mensaje-contact").style.borderColor="#461453"      
+        }else {
+            document.getElementById("mensaje-contact-error").innerHTML = ""
+            document.getElementById("mensaje-contact").style.borderColor="lightgrey"      
+        }
+
+        e.preventDefault();
+        
+    }else{
+        document.getElementById("nombre-contact-error").innerHTML = ""
+        document.getElementById("nombre-contact").style.borderColor="lightgrey"
+        document.getElementById("email-contact-error").innerHTML = ""
+        document.getElementById("email-contact").style.borderColor="lightgrey"
+        document.getElementById("mensaje-contact-error").innerHTML = ""
+        document.getElementById("mensaje-contact").style.borderColor="lightgrey"
+    }
+    
+    /*Verificar email*/
+    function verificarEmail($n){
+        var ExpRegular_Email = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;/*Ingresa cualquier cosa antes del arroba, luego ingresa un arroba y finalice con 2 o 3 letras*/
+        return ExpRegular_Email.test($n);
+    }
+    /*Verificar texto*/
+    function verificarTexto($n){
+        var ExpRegular_Texto = /^[A-Za-zÑñÁÉÍÓÚáéíóúüÜ]+((?:[\s{1}][A-Za-zÑñÁÉÍÓÚáéíóúüÜ]+)+)?$/;/*Debe contener, cualquier letra mayúscula de la A a la Z, cualquier minúscula y todos los caracteres especiales. Lo final es para los espacios*/
+        return ExpRegular_Texto.test($n);
+    }
+
+    /*Verificar numero de telefóno*/
+    function verificarNumTel($m){
+        var ExpRegular_Num = /^[\d]+$/;/*d: acepta toda clase de números*/
+        return ExpRegular_Num.test($m);
+    }
+});

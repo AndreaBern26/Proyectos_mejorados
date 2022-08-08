@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="opiniones">
-                    <p>Guillem Ruiz:<br>"¡No puedo iniciar sesión! Pero buena app" <br>Puntuación: ★☆☆☆☆</p>
+                    <p>Guillem Ruiz:<br>"¡No puedo iniciar sesión!" <br>Puntuación: ★☆☆☆☆</p>
                 </div>
 
                 <div class="opiniones">
@@ -177,6 +177,7 @@
                                 <div class="campo">
                                     <div class="label">
                                         AFICIONES: <p class="error" id="aficiones-error"></p><br>
+                                            <div class="aficiones"> 
                                             <input value="viajar" type="checkbox" id="viajar" name="aficiones">
                                             <label for="viajar" class="label-aficiones">Viajar</label>
                                             <input value="bailar" type="checkbox" id="bailar" name="aficiones">
@@ -198,8 +199,9 @@
                                             <input value="peliculas" type="checkbox" id="peliculas" name="aficiones">
                                             <label for="peliculas" class="label-aficiones">Películas</label>
                                             <input value="animales" type="checkbox" id="animales" name="aficiones">
-                                            <label for="animales" class="label-aficiones">Animales</label>
-                                    </div>
+                                            <label for="animales" class="label-aficiones">Animales</label>                      
+                                        </div>
+                                    </div>   
                                 </div>
             
                                 <div class="campo botones-form botones-3">
@@ -246,25 +248,25 @@
             <div class="popup-content-contactanos">
                 <h2>Contáctanos</h2>
                 <img src="./imagenes/close.png" alt="close" class="close-popup-contactanos">
-                <form action="#" method="post">
+                <form action="/form-recived" method="post">
                     <div class="campo">
                         <label for="Nombre">Nombre:</label><p class="error" id="nombre-contact-error"></p>
-                        <input type="text" name="Nombre" placeholder="Nombre">
+                        <input type="text" name="nombre" placeholder="Nombre" id="nombre-contact">
                     </div>
                     <div class="campo">
                         <label for="Correo">Email:</label><p class="error" id="email-contact-error"></p>
-                        <input type="email" name="Correo" placeholder="Correo">
+                        <input type="email" name="email" placeholder="Correo" id="email-contact">
                     </div>
                     <div class="campo">
                         <label for="Telefono">Teléfono:</label><p class="error" id="telefono-contact-error"></p>
-                        <input type="text" name="Telefono" placeholder="Teléfono">
+                        <input type="text" name="telefono" placeholder="Teléfono" id="telefono-contact">
                     </div>
                     <div class="campo">
-                        <label for="mensaje">¿Qué necesitas?</label><p class="error" id="telefono-contact-error"></p>
-                        <textarea name="mensaje" placeholder="Escribe aquí tu petición"></textarea>
+                        <label for="mensaje">¿Qué necesitas?</label><p class="error" id="mensaje-contact-error"></p>
+                        <textarea name="mensaje" placeholder="Escribe aquí tu petición" id="mensaje-contact"></textarea>
                     </div>
                      <div class="campo"> 
-                        <input type="submit" value="Enviar">
+                        <input class="envio-contact" type="submit" value="Enviar">
                     </div>  
                 </form>
             </div>

@@ -20,6 +20,7 @@ router.get('/filtro', indexController.getFiltro);
 /* GET Welcome page. */
 router.post('/bienvenida', indexController.getBienvenida);
 
+router.post('/form-recived', indexController.getContacto);
 
  
  /*PAG para consultar cookies*/

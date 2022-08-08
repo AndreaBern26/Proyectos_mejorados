@@ -1,4 +1,6 @@
 var usersController = require('./usersController');
+var contactoController = require ('./contactoController');
+
 var indexController = {};
 
 indexController.getHome = function (req, res, next) {
@@ -23,14 +25,26 @@ indexController.getBienvenida = function (req, res, next) {
       nombre, fecha_nacimiento, telefono, ciudad, pais, sexo, orientacion_sexual,
       aficiones, email, password, imagen
     } = req.body
-  
-    console.log(sexo,orientacion_sexual);
-    console.log(telefono);
-    console.log(req.body);
+
     usersController.createUser(nombre, fecha_nacimiento,telefono,ciudad,pais,sexo,orientacion_sexual,aficiones,email,password,imagen);
     res.render('bienvenida');
-  
   }
+
+  indexController.getContacto = function (req, res, next) {
+    let {
+      nombre, email, telefono, mensaje
+    } = req.body
+
+    console.log(nombre);
+    console.log(email);
+    console.log(telefono);
+    console.log(mensaje);
+    
+    contactoController.createContacto(nombre, email, telefono, mensaje);
+    res.render('form-recived');
+  }
+
+ 
 
 
 

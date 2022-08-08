@@ -22,17 +22,16 @@ usersController.login = function(req,res,next){
           FUNCIONES CRUD
 ----------------------------------*/
 
-usersController.obtenerUsuario = function (id){
-
-  userModel.findOne({_id:id}).exec(function(err, usuario){
+usersController.obtenerUsuario = function (req,res){
+  userModel.findOne("gabri094@gmail.com").exec(function(err, usuario){
     if ( err ){
        return false; //No se ha encontrado en la BD
     }else{
-      return usuario; //Devuelve el usuario
+      console.log(usuario);
+      res.render('../views/user',{usuario: usuario}); //Devuelve el usuario
     }
   });
 }
-
 /*----------------Listar usuarios------------------*/
 
 usersController.list = function(req, res){
@@ -84,22 +83,23 @@ function getEdad(dateString) {
 /*----------------Borrado de usuarios---------------- */
 
 /*Elimina todos los usuarios que tengan el nombre Laura*/
-usersController.deleteUsers = async (req,res) => { 
+const deleteUsers = async (req,res) => { 
   const result = await userModel.deleteMany({nombre: 'Laura'});
   console.log(result);
   res.send('Usuarios eliminados');
 }
 
+
 /*Elimina el primer dato que coincida con el nombre de Ana*/
-usersController.deleteAnElement = async () => { 
+const deleteAnElement = async () => { 
   const result = await userModel.deleteOne({nombre: 'Ana'});
   console.log(result);
   res.send('Usuario eliminado');
 }
 
 /*Busca un usuario en específico y lo elimina*/
-usersController.deleteElement = async (req,res) => { 
-  const result = await userModel.findOneAndDelete({email: 'franCisco@msn.com'});
+const deleteElement = async (req,res) => { 
+  const result = await userModel.findOneAndDelete({email: 'daniel26@gmail.com'});
   console.log(result);
   res.send('El usuario ' + userModel.nombre +  ' ha sido eliminado');
 }
@@ -139,29 +139,5 @@ usersController.updateUser3 = async () => {
   {new: true}) //new:true para que se actualice el dato.
   console.log(user);
 }
-
-// usersController.list = async function(req,res){
-//    const users = await userModel.find();
-//    res.render('../views/users', {usuarios: users}); 
-// }
-
-// userController.auth = function(email){
-//     //Comprobar en la BD si existe el email. 
-
-//     if (userController.obtenerUsuario){
-//       if (req.cookies['nombre-usuario']){
-//         res.render('user');
-//       }else{
-//         res.cookie('nombre-usuario', req.body.nombre, 60000).send("cookie definida");//a la variable res se le asigna una cookie con un nombre, un valor y una fecha de expiración (en ms)
-//         //Cookie que dura 60 segundos. Por defecto el tiempo de expiración es un mes.
-//       }
-
-//       return true;
-
-//     }else{
-//       res.render('error');
-//       return false;
-//     } 
-// }
 
 module.exports = usersController;

@@ -1,10 +1,13 @@
 //Crear el esquema de usuario con Schema.
 
 var mongoose = require('mongoose');
+const {appConfig} = require('../config/config');
+
 var Schema = mongoose.Schema; //cogemos el objeto Schema de la librería mongoose.
 
 var usuarioSchema = new Schema({
     nombre: {type: String, required: true, max:20}, //tipo, si es obligatorio (required), max de caracteres que puede tener 
+    edad: {type:String, max:3},
     ciudad: {type: String, required: true, max:50},
     pais: {type:String, required: true, max:50},
     aficiones: {type: [String], required: true, max:300},
